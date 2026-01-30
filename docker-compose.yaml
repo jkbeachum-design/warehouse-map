@@ -6,4 +6,4 @@ services:
     ports:
       - "8085:80"  # This puts the map on port 8085
     volumes:
-      - ./:/usr/share/nginx/html:ro
+      - ./:/usr/share/nginx/html:r
