@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Warehouse Map</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #f0f0f0; }
+        
+        #map-container {
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            border: 2px solid #333;
+            margin-top: 20px;
+        }
+
+        /* SVG Styles */
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* The Magic Highlight Logic */
+        /* By default, all racks are transparent/normal */
+        path, rect {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* When active, turn it SEMI-TRANSPARENT GREEN */
+        /* This ensures you can see items "behind" or "inside" it */
+        .highlight-active {
+            fill: rgba(0, 255, 0, 0.5) !important; 
+            stroke: #006400 !important;
+            stroke-width: 5px !important;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Warehouse Map</h1>
+    
+    <div style="margin-bottom: 20px;">
+        <input type="text" id="searchInput" placeholder="Enter ID (e.g. RW-PR01)..." 
+               style="padding: 10px; font-size: 16px; width: 300px;">
+        <button onclick="searchMap()" style="padding: 10px 20px; font-size: 16px;">Find</button>
+        <button onclick="clearMap()" style="padding: 10px 20px; font-size: 16px;">Clear</button>
+        <span id="status" style="margin-left: 10px; font-weight: bold;"></span>
+    </div>
+
+    <div id="map-container"></div>
+
+    <script>
+        // Load the SVG file automatically
+        window.onload = function() {
+            fetch('warehouse.svg')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('map-container').innerHTML = data;
+                })
+                .catch(error => {
+                    document.getElementById('status').innerText = "Error: Could not find warehouse.svg";
+                    document.getElementById('status').style.color = "red";
+                });
+        };
+
+        // Search Function
+        function searchMap() {
+            let query = document.getElementById('searchInput').value.trim();
+            
+            // Clear previous highlights
+            document.querySelectorAll('.highlight-active').forEach(el => {
+                el.classList.remove('highlight-active');
+            });
+
+            if (!query) return;
+
+            // Find the element by ID
+            let target = document.getElementById(query);
+
+            if (target) {
+                target.classList.add('highlight-active');
+                document.getElementById('status').innerText = "Found: " + query;
+                document.getElementById('status').style.color = "green";
+            } else {
+                document.getElementById('status').innerText = "Not Found: " + query;
+                document.getElementById('status').style.color = "red";
+            }
+        }
+
+        // Trigger search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') searchMap();
+        });
+
+        function clearMap() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('status').innerText = '';
+            searchMap();
+        }
+    </script>
+
+</body>
+</html>
