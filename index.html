@@ -139,37 +139,23 @@
             updateStatusDiv.style.color = '#856404';
             updateStatusDiv.innerText = '⏳ Running map update... This may take a moment...';
             
-            // Get your Home Assistant long-lived access token from settings
-            const haToken = localStorage.getItem('ha_token') || prompt('Enter your Home Assistant Long-Lived Token (get from: Settings → Create Token)');
-            if (!haToken) {
-                updateStatusDiv.style.backgroundColor = '#f8d7da';
-                updateStatusDiv.style.color = '#721c24';
-                updateStatusDiv.innerText = '✗ Error: No Home Assistant token provided';
-                return;
-            }
-            
-            // Save token for next time
-            localStorage.setItem('ha_token', haToken);
-            
-            // Call Home Assistant shell command via service
-            fetch('http://localhost:8123/api/services/shell_command/update_warehouse_map', {
+            fetch('http://localhost:8086/api/update-map-links', {
                 method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${haToken}`,
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({})
-            })
-            .then(response => {
-                if (response.status === 401) {
-                    throw new Error('Invalid token - please check your Home Assistant token');
                 }
-                return response.json();
             })
+            .then(response => response.json())
             .then(data => {
-                updateStatusDiv.style.backgroundColor = '#d4edda';
-                updateStatusDiv.style.color = '#155724';
-                updateStatusDiv.innerText = '✓ Success! Warehouse map links updated. Items in Homebox have been updated with location map links.';
+                if (data.success) {
+                    updateStatusDiv.style.backgroundColor = '#d4edda';
+                    updateStatusDiv.style.color = '#155724';
+                    updateStatusDiv.innerText = `✓ Success! ${data.message}`;
+                } else {
+                    updateStatusDiv.style.backgroundColor = '#f8d7da';
+                    updateStatusDiv.style.color = '#721c24';
+                    updateStatusDiv.innerText = `✗ Error: ${data.error || 'Unknown error'}`;
+                }
             })
             .catch(error => {
                 updateStatusDiv.style.backgroundColor = '#f8d7da';
