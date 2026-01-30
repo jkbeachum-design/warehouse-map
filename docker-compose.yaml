@@ -1,0 +1,9 @@
+services:
+  warehouse-map:
+    image: nginx:alpine
+    container_name: warehouse-map
+    restart: unless-stopped
+    ports:
+      - "8085:80"  # This puts the map on port 8085
+    volumes:
+      - ./:/usr/share/nginx/html:ro
