@@ -5,10 +5,10 @@ import json
 # 1. Your HomeBox URL
 # Use "localhost" if running this on the server.
 # Use "192.168.X.X" if running this from your Windows PC.
-BASE_URL = "http://localhost:3100" 
+BASE_URL = "http://localhost:7745" 
 
 # 2. PASTE YOUR KEY HERE
-API_TOKEN = "TWVUIHHFVBACQQ6OJE33KHEARY"
+API_TOKEN = "http://100.98.96.107:7745?token=TWVUIHHFVBACQQ6OJE33KHEARY"
 
 # 3. The Map URL base
 MAP_URL = "https://map.jkbeachum.com/?target="
