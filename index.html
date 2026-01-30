@@ -55,7 +55,9 @@
                style="padding: 10px; font-size: 16px; width: 300px;">
         <button onclick="searchMap()" style="padding: 10px 20px; font-size: 16px;">Find</button>
         <button onclick="clearMap()" style="padding: 10px 20px; font-size: 16px;">Clear</button>
+        <button onclick="updateMapLinks()" style="padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">🔄 Update Map Links</button>
         <div id="status" style="margin-top: 10px; font-weight: bold; min-height: 24px;"></div>
+        <div id="updateStatus" style="margin-top: 10px; padding: 10px; border-radius: 4px; display: none; min-height: 24px;"></div>
     </div>
 
     <div id="map-container"></div>
@@ -128,6 +130,52 @@
             document.getElementById('status').innerText = '';
             document.querySelectorAll('.highlight-active').forEach(el => el.classList.remove('highlight-active'));
             window.history.pushState({}, document.title, window.location.pathname);
+        }
+
+        function updateMapLinks() {
+            const updateStatusDiv = document.getElementById('updateStatus');
+            updateStatusDiv.style.display = 'block';
+            updateStatusDiv.style.backgroundColor = '#fff3cd';
+            updateStatusDiv.style.color = '#856404';
+            updateStatusDiv.innerText = '⏳ Running map update... This may take a moment...';
+            
+            // Get your Home Assistant long-lived access token from settings
+            const haToken = localStorage.getItem('ha_token') || prompt('Enter your Home Assistant Long-Lived Token (get from: Settings → Create Token)');
+            if (!haToken) {
+                updateStatusDiv.style.backgroundColor = '#f8d7da';
+                updateStatusDiv.style.color = '#721c24';
+                updateStatusDiv.innerText = '✗ Error: No Home Assistant token provided';
+                return;
+            }
+            
+            // Save token for next time
+            localStorage.setItem('ha_token', haToken);
+            
+            // Call Home Assistant shell command via service
+            fetch('http://localhost:8123/api/services/shell_command/update_warehouse_map', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${haToken}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => {
+                if (response.status === 401) {
+                    throw new Error('Invalid token - please check your Home Assistant token');
+                }
+                return response.json();
+            })
+            .then(data => {
+                updateStatusDiv.style.backgroundColor = '#d4edda';
+                updateStatusDiv.style.color = '#155724';
+                updateStatusDiv.innerText = '✓ Success! Warehouse map links updated. Items in Homebox have been updated with location map links.';
+            })
+            .catch(error => {
+                updateStatusDiv.style.backgroundColor = '#f8d7da';
+                updateStatusDiv.style.color = '#721c24';
+                updateStatusDiv.innerText = `✗ Error: ${error.message}`;
+            });
         }
     </script>
 
