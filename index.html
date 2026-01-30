@@ -11,6 +11,7 @@
             background: white;
             border: 2px solid #333;
             margin-top: 20px;
+            overflow: hidden; /* Keeps the map tidy */
         }
 
         /* SVG Styles */
@@ -33,6 +34,13 @@
             fill: rgba(0, 255, 0, 0.5) !important; 
             stroke: #006400 !important;
             stroke-width: 5px !important;
+            animation: pulse 1s infinite alternate; /* Added a subtle pulse */
+        }
+
+        /* Pulse Animation for better visibility */
+        @keyframes pulse {
+            from { opacity: 0.6; }
+            to { opacity: 1; }
         }
     </style>
 </head>
@@ -57,6 +65,18 @@
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('map-container').innerHTML = data;
+                    
+                    // --- NEW LOGIC: Check URL for ?target=ID ---
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const targetId = urlParams.get('target');
+
+                    if (targetId) {
+                        // 1. Fill the search box so you know what you are looking at
+                        document.getElementById('searchInput').value = targetId;
+                        // 2. Run the search immediately
+                        searchMap();
+                    }
+                    // -------------------------------------------
                 })
                 .catch(error => {
                     document.getElementById('status').innerText = "Error: Could not find warehouse.svg";
@@ -80,8 +100,18 @@
 
             if (target) {
                 target.classList.add('highlight-active');
+                
+                // Update Status Text
                 document.getElementById('status').innerText = "Found: " + query;
                 document.getElementById('status').style.color = "green";
+
+                // Scroll the view to the item (Helpful on mobile)
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                    inline: 'center'
+                });
+
             } else {
                 document.getElementById('status').innerText = "Not Found: " + query;
                 document.getElementById('status').style.color = "red";
@@ -96,7 +126,12 @@
         function clearMap() {
             document.getElementById('searchInput').value = '';
             document.getElementById('status').innerText = '';
-            searchMap();
+            // Clear highlights manually since searchMap returns if empty
+            document.querySelectorAll('.highlight-active').forEach(el => {
+                el.classList.remove('highlight-active');
+            });
+            // Clear URL param without reloading page (clean up address bar)
+            window.history.pushState({}, document.title, window.location.pathname);
         }
     </script>
 
