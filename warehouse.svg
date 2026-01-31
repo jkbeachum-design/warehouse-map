@@ -407,26 +407,27 @@
        inkscape:label="WB-01"
        sodipodi:insensitive="true" />
     <g
-       id="LC-01"
-       inkscape:label="LC-01"
-       sodipodi:insensitive="true">
+       id="LC"
+       inkscape:label="LC-01">
       <g
          id="g3"
          inkscape:label="LC-01">
         <rect
            style="fill:#b3b3b3;stroke:#000000;stroke-width:2"
-           id="rect2"
+           id="LC-01"
            width="35"
            height="10.000003"
            x="220"
-           y="45" />
+           y="45"
+           inkscape:label="LC-01" />
         <rect
            style="fill:#b3b3b3;stroke:#000000;stroke-width:0.5;stroke-dasharray:none"
-           id="rect3"
+           id="SG-01"
            width="96"
            height="5"
            x="189"
-           y="46" />
+           y="46"
+           inkscape:label="SG-01" />
       </g>
     </g>
   </g>
