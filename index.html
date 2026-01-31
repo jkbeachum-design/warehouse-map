@@ -11,33 +11,35 @@
             background: white;
             border: 2px solid #333;
             margin-top: 20px;
-            overflow: hidden; /* Keeps the map tidy */
+            overflow: hidden;
         }
 
-        /* SVG Styles */
         svg {
             width: 100%;
             height: auto;
             display: block;
         }
 
-        /* The Magic Highlight Logic */
-        /* By default, all racks are transparent/normal */
+        /* All interactive elements */
         path, rect {
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        /* When active, turn it SEMI-TRANSPARENT GREEN */
-        /* This ensures you can see items "behind" or "inside" it */
+        /* Hover effect so you know what is clickable */
+        path:hover, rect:hover {
+            fill-opacity: 0.7;
+            stroke: #000;
+            stroke-width: 2px;
+        }
+
         .highlight-active {
             fill: rgba(0, 255, 0, 0.5) !important; 
             stroke: #006400 !important;
             stroke-width: 5px !important;
-            animation: pulse 1s infinite alternate; /* Added a subtle pulse */
+            animation: pulse 1s infinite alternate;
         }
 
-        /* Pulse Animation for better visibility */
         @keyframes pulse {
             from { opacity: 0.6; }
             to { opacity: 1; }
@@ -53,85 +55,113 @@
                style="padding: 10px; font-size: 16px; width: 300px;">
         <button onclick="searchMap()" style="padding: 10px 20px; font-size: 16px;">Find</button>
         <button onclick="clearMap()" style="padding: 10px 20px; font-size: 16px;">Clear</button>
-        <span id="status" style="margin-left: 10px; font-weight: bold;"></span>
+        <button onclick="updateMapLinks()" style="padding: 10px 20px; font-size: 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">🔄 Update Map Links</button>
+        <div id="status" style="margin-top: 10px; font-weight: bold; min-height: 24px;"></div>
+        <div id="updateStatus" style="margin-top: 10px; padding: 10px; border-radius: 4px; display: none; min-height: 24px;"></div>
     </div>
 
     <div id="map-container"></div>
 
     <script>
-        // Load the SVG file automatically
         window.onload = function() {
             fetch('warehouse.svg')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('map-container').innerHTML = data;
+                    setupClickListeners();
                     
-                    // --- NEW LOGIC: Check URL for ?target=ID ---
                     const urlParams = new URLSearchParams(window.location.search);
                     const targetId = urlParams.get('target');
-
                     if (targetId) {
-                        // 1. Fill the search box so you know what you are looking at
                         document.getElementById('searchInput').value = targetId;
-                        // 2. Run the search immediately
                         searchMap();
                     }
-                    // -------------------------------------------
                 })
                 .catch(error => {
-                    document.getElementById('status').innerText = "Error: Could not find warehouse.svg";
-                    document.getElementById('status').style.color = "red";
+                    setStatus("Error: Could not find warehouse.svg", "red");
                 });
         };
 
-        // Search Function
+        function setupClickListeners() {
+            const svg = document.querySelector('svg');
+            // Listen for clicks on any rectangle or path with an ID
+            svg.addEventListener('click', function(e) {
+                const target = e.target.closest('rect, path');
+                if (target && target.id) {
+                    const id = target.id;
+                    const markdownLink = "[WAREHOUSE LOCATION MAP](https://map.jkbeachum.com/?target=" + id + ")";
+                    
+                    // 1. Copy to Clipboard
+                    navigator.clipboard.writeText(markdownLink).then(() => {
+                        // 2. Highlight it visually
+                        document.getElementById('searchInput').value = id;
+                        searchMap();
+                        // 3. Update Status
+                        setStatus("Copied Markdown for: " + id, "blue");
+                    });
+                }
+            });
+        }
+
         function searchMap() {
             let query = document.getElementById('searchInput').value.trim();
-            
-            // Clear previous highlights
-            document.querySelectorAll('.highlight-active').forEach(el => {
-                el.classList.remove('highlight-active');
-            });
+            document.querySelectorAll('.highlight-active').forEach(el => el.classList.remove('highlight-active'));
 
             if (!query) return;
 
-            // Find the element by ID
             let target = document.getElementById(query);
-
             if (target) {
                 target.classList.add('highlight-active');
-                
-                // Update Status Text
-                document.getElementById('status').innerText = "Found: " + query;
-                document.getElementById('status').style.color = "green";
-
-                // Scroll the view to the item (Helpful on mobile)
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center',
-                    inline: 'center'
-                });
-
+                setStatus("Viewing: " + query, "green");
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
             } else {
-                document.getElementById('status').innerText = "Not Found: " + query;
-                document.getElementById('status').style.color = "red";
+                setStatus("ID '" + query + "' not found on map.", "red");
             }
         }
 
-        // Trigger search on Enter key
-        document.getElementById('searchInput').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') searchMap();
-        });
+        function setStatus(text, color) {
+            const status = document.getElementById('status');
+            status.innerText = text;
+            status.style.color = color;
+        }
 
         function clearMap() {
             document.getElementById('searchInput').value = '';
             document.getElementById('status').innerText = '';
-            // Clear highlights manually since searchMap returns if empty
-            document.querySelectorAll('.highlight-active').forEach(el => {
-                el.classList.remove('highlight-active');
-            });
-            // Clear URL param without reloading page (clean up address bar)
+            document.querySelectorAll('.highlight-active').forEach(el => el.classList.remove('highlight-active'));
             window.history.pushState({}, document.title, window.location.pathname);
+        }
+
+        function updateMapLinks() {
+            const updateStatusDiv = document.getElementById('updateStatus');
+            updateStatusDiv.style.display = 'block';
+            updateStatusDiv.style.backgroundColor = '#fff3cd';
+            updateStatusDiv.style.color = '#856404';
+            updateStatusDiv.innerText = '⏳ Running map update... This may take a moment...';
+            
+            fetch('http://localhost:8086/api/update-map-links', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    updateStatusDiv.style.backgroundColor = '#d4edda';
+                    updateStatusDiv.style.color = '#155724';
+                    updateStatusDiv.innerText = `✓ Success! ${data.message}`;
+                } else {
+                    updateStatusDiv.style.backgroundColor = '#f8d7da';
+                    updateStatusDiv.style.color = '#721c24';
+                    updateStatusDiv.innerText = `✗ Error: ${data.error || 'Unknown error'}`;
+                }
+            })
+            .catch(error => {
+                updateStatusDiv.style.backgroundColor = '#f8d7da';
+                updateStatusDiv.style.color = '#721c24';
+                updateStatusDiv.innerText = `✗ Error: ${error.message}`;
+            });
         }
     </script>
 
