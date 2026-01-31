@@ -25,9 +25,9 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="in"
      showgrid="true"
-     inkscape:zoom="0.028165235"
-     inkscape:cx="13314.286"
-     inkscape:cy="11414.781"
+     inkscape:zoom="0.01545654"
+     inkscape:cx="20638.513"
+     inkscape:cy="18729.936"
      inkscape:window-width="1360"
      inkscape:window-height="745"
      inkscape:window-x="-8"
@@ -109,30 +109,31 @@
   <g
      inkscape:label="Floorplan"
      inkscape:groupmode="layer"
-     id="layer1"
-     sodipodi:insensitive="true">
+     id="Floorplan">
     <rect
        style="display:inline;fill:none;fill-opacity:1;stroke:url(#linearGradient8);stroke-width:4.57143;stroke-dasharray:none"
-       id="rect4"
-       width="283.42856"
+       id="Floor"
+       width="283.42899"
        height="283.42856"
        x="58.285713"
        y="20"
-       sodipodi:insensitive="true" />
+       sodipodi:insensitive="true"
+       inkscape:label="Floor" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer3"
-     inkscape:label="Door">
+     inkscape:label="Door"
+     sodipodi:insensitive="true">
     <rect
        style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.827586;stroke-dasharray:none;stroke-opacity:1"
-       id="rect9"
+       id="Door"
        width="119.17242"
        height="9.9310341"
        x="140.41379"
        y="300.06897"
-       sodipodi:insensitive="true"
-       inkscape:label="Door" />
+       inkscape:label="Door"
+       sodipodi:insensitive="true" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -148,7 +149,7 @@
        inkscape:label="FW-PR02" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="rect12"
+       id="LW-R01"
        width="22.311148"
        height="70.31115"
        x="62.24551"
@@ -157,12 +158,13 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;stroke:#000000;stroke-width:1.5;stroke-dasharray:none"
-       id="rect5"
+       id="MW-WB"
        width="20.488287"
        height="59.488289"
        x="229.76172"
        y="238.76172"
-       inkscape:label="MW-WB" />
+       inkscape:label="MW-WB"
+       sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:url(#linearGradient9);stroke-width:1.98666;stroke-dasharray:none;stroke-opacity:1"
        id="RW-PR02"
@@ -170,19 +172,21 @@
        height="106.01334"
        x="290.98666"
        y="24"
+       inkscape:label="RW-PR02"
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;stroke:#000000;stroke-width:1.5;stroke-dasharray:none"
-       id="rect5-8"
+       id="MW-TC"
        width="20.756126"
        height="39.75613"
        x="149.75"
        y="258.49387"
-       inkscape:label="MW-TC" />
+       inkscape:label="MW-TC"
+       sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;stroke:url(#linearGradient10);stroke-width:1.98666;stroke-dasharray:none;stroke-opacity:1"
        id="RW-PR01"
-       width="46.01334"
+       width="46.013"
        height="106.01334"
        x="290.99335"
        y="132"
@@ -190,7 +194,7 @@
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
        id="FW-R01"
-       width="70.347916"
+       width="70.348"
        height="22.347914"
        x="62.379509"
        y="276.6521"
@@ -202,6 +206,7 @@
        height="32.19154"
        x="62.298306"
        y="169.90424"
+       inkscape:label="LW-S02"
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
@@ -210,10 +215,29 @@
        height="32.19154"
        x="62.298306"
        y="203.90424"
+       inkscape:label="LW-S01"
+       sodipodi:insensitive="true" />
+    <rect
+       style="fill:#b3b3b3;stroke:#000000;stroke-width:1.5"
+       id="RB-01"
+       width="16"
+       height="36"
+       x="320"
+       y="260"
+       inkscape:label="RB-01"
+       sodipodi:insensitive="true" />
+    <rect
+       style="fill:#b3b3b3;stroke:#000000;stroke-width:1.5"
+       id="RB-02"
+       width="16"
+       height="36"
+       x="90"
+       y="124"
+       inkscape:label="RB-02"
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="rect12-1"
+       id="LW-R02"
        width="22.311148"
        height="70.31115"
        x="62.24551"
@@ -222,7 +246,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="LW-S02-6"
+       id="LW-S04"
        width="12.191538"
        height="32.19154"
        x="62.298306"
@@ -231,7 +255,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="LW-S01-8"
+       id="LW-S03"
        width="12.191538"
        height="32.19154"
        x="62.298306"
@@ -240,7 +264,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="rect12-8"
+       id="LW-R03"
        width="22.311148"
        height="70.31115"
        x="62.24551"
@@ -249,7 +273,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.68885;stroke-dasharray:none;stroke-opacity:1"
-       id="rect12-8-0"
+       id="RR-01"
        width="22.311148"
        height="70.31115"
        x="90.116096"
@@ -258,35 +282,46 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="rect12-8-0-5"
+       id="RR-02"
        width="22.311148"
        height="70.31115"
-       x="257.68884"
-       y="69.844421"
+       x="260"
+       y="75"
        inkscape:label="RR-02"
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="rect12-8-0-5-6"
+       id="RR-04"
        width="22.455145"
        height="58.455147"
-       x="-222.45514"
-       y="-129.22757"
+       x="-249.25"
+       y="-164.20514"
        transform="scale(-1)"
        inkscape:label="RR-04"
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="rect12-8-0-5-3"
-       width="16.804173"
+       id="RR-05"
+       width="16.804001"
        height="46.804169"
-       x="230"
-       y="71.597916"
-       inkscape:label="RR-03"
+       x="-93.402084"
+       y="203.19583"
+       inkscape:label="RR-05"
+       transform="rotate(-90)"
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="LW-S02-9"
+       id="RR-03"
+       width="16.804173"
+       height="46.804169"
+       x="-222.25"
+       y="-152.55417"
+       inkscape:label="RR-03"
+       transform="scale(-1)"
+       sodipodi:insensitive="true" />
+    <rect
+       style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
+       id="LW-S06"
        width="12.191538"
        height="32.19154"
        x="62.298313"
@@ -295,7 +330,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="LW-S01-2"
+       id="LW-S05"
        width="12.191538"
        height="32.19154"
        x="62.298313"
@@ -304,7 +339,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="LW-S02-9-3"
+       id="BW-S02"
        width="12.191538"
        height="32.19154"
        x="23.90423"
@@ -314,7 +349,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="LW-S02-9-3-1"
+       id="BW-S03"
        width="12.191538"
        height="32.19154"
        x="23.90423"
@@ -324,7 +359,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="LW-S02-9-3-1-4"
+       id="BW-S04"
        width="14.175616"
        height="28.175615"
        x="24"
@@ -334,8 +369,8 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="LW-S02-9-3-1-4-3"
-       width="14.175616"
+       id="BW-S05"
+       width="14.176"
        height="28.175615"
        x="24"
        y="-258"
@@ -344,7 +379,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="LW-S02-9-3-1-4-5"
+       id="BW-S06"
        width="14.175616"
        height="28.175615"
        x="24"
@@ -354,7 +389,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-dasharray:none;stroke-opacity:1"
-       id="LW-S01-2-1"
+       id="BW-S01"
        width="12.191538"
        height="32.19154"
        x="23.90423"
@@ -364,7 +399,7 @@
        sodipodi:insensitive="true" />
     <rect
        style="fill:#b3b3b3;stroke:#000000;stroke-width:2"
-       id="rect1"
+       id="WB-01"
        width="40"
        height="120"
        x="146"
@@ -372,8 +407,9 @@
        inkscape:label="WB-01"
        sodipodi:insensitive="true" />
     <g
-       id="g1"
-       inkscape:label="LC-01">
+       id="LC-01"
+       inkscape:label="LC-01"
+       sodipodi:insensitive="true">
       <g
          id="g3"
          inkscape:label="LC-01">
