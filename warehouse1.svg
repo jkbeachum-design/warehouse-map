@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1"
    inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
-   sodipodi:docname="warehouse.svg"
+   sodipodi:docname="warehouse1.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -27,7 +27,7 @@
      showgrid="true"
      inkscape:zoom="0.028165235"
      inkscape:cx="13314.286"
-     inkscape:cy="11414.781"
+     inkscape:cy="27036.877"
      inkscape:window-width="1360"
      inkscape:window-height="745"
      inkscape:window-x="-8"
@@ -109,8 +109,7 @@
   <g
      inkscape:label="Floorplan"
      inkscape:groupmode="layer"
-     id="layer1"
-     sodipodi:insensitive="true">
+     id="layer1">
     <rect
        style="display:inline;fill:none;fill-opacity:1;stroke:url(#linearGradient8);stroke-width:4.57143;stroke-dasharray:none"
        id="rect4"
@@ -161,8 +160,7 @@
        width="20.488287"
        height="59.488289"
        x="229.76172"
-       y="238.76172"
-       inkscape:label="MW-WB" />
+       y="238.76172" />
     <rect
        style="fill:#b3b3b3;fill-opacity:1;stroke:url(#linearGradient9);stroke-width:1.98666;stroke-dasharray:none;stroke-opacity:1"
        id="RW-PR02"
@@ -372,8 +370,7 @@
        inkscape:label="WB-01"
        sodipodi:insensitive="true" />
     <g
-       id="g1"
-       inkscape:label="LC-01">
+       id="g1">
       <g
          id="g3"
          inkscape:label="LC-01">
